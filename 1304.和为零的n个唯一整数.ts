@@ -6,25 +6,16 @@
 
 // @lc code=start
 function sumZero(n: number): number[] {
-  if (n === 1) {
-    return [0];
-  }
-
   const ans: number[] = [];
-  let count: number;
 
   if (n % 2) {
-    count = (n - 1) / 2;
     ans.push(0);
-  } else {
-    count = n / 2;
   }
 
-  for (let i = 0; i < count; i++) {
-    ans.push(i + 1);
-    ans.push(-(i + 1));
+  for (let i = 1; i <= n / 2; i++) {
+    ans.push(i);
+    ans.push(-i);
   }
-
-  return ans;
+ return ans;
 }
 // @lc code=end
