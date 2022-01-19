@@ -35,33 +35,41 @@ function openLock(deadends: string[], target: string): number {
   if(deadSet.has(target) || deadSet.has('0000')) return -1;
 
   let depth = 0;
-  const queue: string[] = [];
+  let q1: string[] = [];
+  let q2: string[] = [];
   const visited: Set<string> = new Set();
 
-  queue.push('0000');
+  q1.push('0000');
+  q2.push(target);
 
-  while(queue.length) {
-    const width = queue.length;
+  while(q1.length && q2.length) {
+    const temp: string[] = [];
+
+    const width = q1.length;
 
     for(let i = 0; i < width; i++) {
-      const lock = queue.shift();
+      const lock = q1.shift();
 
-      if(lock === target) return depth;
+      if(visited.has(lock)) continue;
+
+      if(q2.includes(lock)) return depth;
+      visited.add(lock);
 
       for(let j = 0; j < lock.length; j++) {
         const up = plusOne(lock, j);
         const down = minusOne(lock, j);
 
         if(!visited.has(up) && !deadSet.has(up)) {
-          queue.push(up);
-          visited.add(up);
+          temp.push(up);
         }
         if(!visited.has(down) && !deadSet.has(down)) {
-          queue.push(down);
-          visited.add(down);
+          temp.push(down);
         }
       }
     }
+
+    q1 = [...q2];
+    q2 = [...temp];
 
     depth += 1;
   }
