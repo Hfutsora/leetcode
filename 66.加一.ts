@@ -7,16 +7,7 @@
 // @lc code=start
 function plusOne(digits: number[]): number[] {
   const result: number[] = [];
-  let plus: boolean;
-
-  const tail = digits.pop();
-
-  if(tail === 9) {
-    plus = true;
-    result.unshift(0);
-  } else {
-    result.unshift(tail + 1);
-  }
+  let plus = true;
 
   while(digits.length) {
     const tail = digits.pop();
