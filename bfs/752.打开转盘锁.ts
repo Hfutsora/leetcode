@@ -1,3 +1,5 @@
+export {};
+
 /*
  * @lc app=leetcode.cn id=752 lang=typescript
  *
