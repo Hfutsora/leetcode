@@ -6,10 +6,6 @@
 
 // @lc code=start
 function hIndex(citations: number[]): number {
-  citations = citations.filter(c => c > 0)
-  if (!citations.length) return 0
-  if (citations.length === 1 && citations[0] > 0) return 1
-
   let max = 0
   const cs = citations.sort((a, b) => a - b)
 
